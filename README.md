@@ -22,7 +22,7 @@
 儲存資料可至DATA的連結頁面瀏覽
 如要刪除過去儲存資料，可以該筆資料的ID，輸入ID即可刪除
 
-# API URL
+原始 API URL
 https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-001414-014
 
 # Install dependencies
@@ -30,11 +30,13 @@ composer install
 npm install
 
 # configure env file
+Make a copy of env.example file and make the following changes
+
 DB_DATABASE=yourDatabaseName
 DB_USERNAME=yourDatabaseUserName
 DB_PASSWORD=yourDatabasePassword
 
-# Run migration
+# Run migration 
 php artisan migrate
 
 # Start localhost server
@@ -46,7 +48,7 @@ npm run watch
 # Check website in browser
 enter localhost:8000 in address, press enter
 
-# resources/views/app.blade.php
+# Root Webpage: resources/views/app.blade.php
 Root webpage, contains div element (id = app), to which the SPA will be mounted into
 
 # Main: resources/mains.js
@@ -76,7 +78,7 @@ All components of this SPA can be found in this folder
 Vuex is initialized and installed in index.js
 All vuex states, getters, actions, mutations can be found in store.js
 
-# Unit Testing
+# Unit Testing: tests/unit/test.spec.js
 npm run test
 
 
