@@ -1,7 +1,8 @@
 # 有關於這個SPA的基本構造
-前端: Vue, Bootstrap-Vue, Vue-Router, Vuex, axios
-後端: Lumen
-測試: JEST
+Front-end: Vue, Bootstrap-Vue, Vue-Router, Vuex, axios
+Back-end: Lumen
+Data storage: MySQL
+Testing: JEST
 
 # 大綱
 我用了台灣政府開放平台 DATA.GOV.TW 的民國108年新北市生育數據API
@@ -25,60 +26,79 @@
 原始 API URL
 https://od.moi.gov.tw/api/v1/rest/datastore/301000000A-001414-014
 
-# Install dependencies
+## Getting started
+
+### Install dependencies
 composer install
 npm install
 
-# configure env file
+### configure env file
 Make a copy of env.example file and make the following changes
 
 DB_DATABASE=yourDatabaseName
 DB_USERNAME=yourDatabaseUserName
 DB_PASSWORD=yourDatabasePassword
 
-# Run migration 
+### Run migration 
 php artisan migrate
 
-# Start localhost server
+### Start localhost server
 php -S localhost:8000 -t public
 
-# Run NPM watch
+### Run NPM watch
 npm run watch
 
-# Check website in browser
+### Check website in browser
 enter localhost:8000 in address, press enter
 
-# Root Webpage: resources/views/app.blade.php
+### Unit Testing:
+npm run test
+test file: tests/unit/test.spec.js
+
+## Front-End notes
+
+### Root Webpage: resources/views/app.blade.php
 Root webpage, contains div element (id = app), to which the SPA will be mounted into
 
-# Main: resources/mains.js
+### Main: resources/mains.js
 Entry point: vue + bootstrap + vuex-store + vue-router, all installed in this file
 App.vue (the main App file), is also mounted in this entry point
 
-# App: resources/App.vue
+### App: resources/App.vue
 The main file that display SPA, contains NavBar (navigation bar) and router-view
 
-# Router: resources/router/router.js
+### Router: resources/router/router.js
 Router component that defines path, name and which component to load
 Components: Home, Data, About
 
-# Home: resources/views/Home.vue
+### Home: resources/views/Home.vue
 Sets filters on location, age, birth order, and gender
 
-# Data: resourecs/views/Data.vue
+### Data: resourecs/views/Data.vue
 Shows currently saved records, also allows users to delete data
 
-# About: resources/views/About.vue
+### About: resources/views/About.vue
 Brief informational page, showing where I got the data from
 
-# Components: resources/components
+### Components: resources/components
 All components of this SPA can be found in this folder
 
-# Vuex Store: resources/store/index.js + modules/store.js
+### Vuex Store: resources/store/index.js + modules/store.js
 Vuex is initialized and installed in index.js
 All vuex states, getters, actions, mutations can be found in store.js
 
-# Unit Testing: tests/unit/test.spec.js
-npm run test
+## Back-End notes
+
+### Routes:
+Route file: routes/web.php
+
+### Migration:
+Migration file: database/migrations/2020_06_30_113334_stats_table.php
+
+### Model:
+Model file: app/Stat.php
+
+### Controller:
+Controller file: app/Http/Controllers/StatController.php
 
 

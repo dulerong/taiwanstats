@@ -10,27 +10,19 @@
         </b-jumbotron>
         <b-table striped hover stacked="md" :items="savedData"></b-table>
         <!-- below is code for modal dialogs-->
-        <b-modal id="deleteModal" hide-footer title="Reminder (刪除資料事先確認)">
-            <div class="d-block text-center">
-                <h3>確定刪除資料?</h3>
-            </div>
-            <b-button class="mt-3" variant="outline-danger" block @click="deleteSavedData(deleteId)">確定</b-button>
-            <b-button class="mt-3" variant="outline-primary" block @click="$bvModal.hide('deleteModal')">取消</b-button>
-        </b-modal>
-        <b-modal id="nothingFound" hide-footer title="Reminder (無效ID)">
-            <div class="d-block text-center">
-                <h3>查無此資料!</h3>
-            </div>
-            <b-button class="mt-3" variant="outline-danger" block @click="$bvModal.hide('nothingFound')">關閉</b-button>
-        </b-modal>
+        <DeleteModal v-on:deleteSavedData="deleteSavedData(deleteId)"/>
+        <NothingFound />
         <!-- above is code for modal dialogs-->
     </b-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import DeleteModal from '../modals/DeleteModal'
+import NothingFound from '../modals/NothingFound'
 
 export default {
+    components: { DeleteModal, NothingFound },
     data(){ return{ deleteId: '' } },
     computed: mapGetters(['savedData']),
     created(){ this.retrieveSavedData();}, 
